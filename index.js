@@ -6,14 +6,15 @@ function postCode() {
         var language = document.querySelector('.language');
         var message = document.querySelector('.messages > .ui');
 
-		var myHeaders = new Headers();
-		myHeaders.append('Content-Type', 'application/json');
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
 
-		var payload = JSON.stringify({
-        	preCode: '',
-        	language: language.value,
-        	code: code.value,
-        	afterCode: ''
+        var payload = JSON.stringify({
+            // preCode: '',
+            uuid: '', // ?? 
+            language: language.value,
+            code: code.value
+                // afterCode: ''
         });
 
         var options = {
@@ -22,8 +23,8 @@ function postCode() {
             // if no headers => text/plain, then using bodyParser doesn't give req.body
             // if 'Content-Type': 'application/json' or 'application/x-www-form-urlencoded' then req.body exists.
             headers: {
-            	'Content-Type': 'application/json'
-            	// 'Content-Type': 'application/x-www-form-urlencoded' // need for bodyParser correct work - to be able to receive 'request.body'
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded' // need for bodyParser correct work - to be able to receive 'request.body'
             },
             // mode: 'cors',
             body: payload
@@ -41,12 +42,12 @@ function postCode() {
             })
             .then(data => {
                 $(message).addClass('message');
-                if (data.error){
-                	$(message).removeClass('success').text('');
-                	$(message).addClass('negative').text(data.error);
+                if (data.error) {
+                    $(message).removeClass('success').text('');
+                    $(message).addClass('negative').text(data.error);
                 } else {
-                	$(message).removeClass('negative').text('');
-                	$(message).addClass('success').text(data.result);
+                    $(message).removeClass('negative').text('');
+                    $(message).addClass('success').text(data.result);
                 }
                 return data;
             });

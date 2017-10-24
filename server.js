@@ -5,7 +5,8 @@ var shell = require('shelljs')
 var app = express()
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
-var php = require("node-php"); 
+var php = require("node-php");
+const uuidv4 = require('uuid/v4');
 
 app.set('port', (process.env.PORT || 5000)); // process.env.PORT is for Heroku instance
 
@@ -41,40 +42,48 @@ router.route('/interpret')
 app.use('/api', router);
 */
 
-function interpretCode(ext, fileName){
+function interpretCode(ext, fileName) {
     var res;
 
     switch (ext) {
         case 'java':
-            console.log('Java file created. Compiling...');
+            console.log(`\nJava file ${fileName} created. Compiling...`);
             shell.exec('javac Solution.java');
-            console.log('Java file compiled. Running...');
+            console.log(`${fileName} file compiled. Running...`);
             res = shell.exec('java Solution');
-            shell.rm('Solution.class');
+            // shell.rm('Solution.class');
+            console.log('\nSolution.class removed');
             break;
         case 'js':
-            console.log('JavaScript file created. Running via Node...');
-            res = shell.exec('node '+ fileName);
+            console.log(`\nJavaScript file ${fileName} created. Running via Node...`);
+            res = shell.exec('node ' + fileName);
+            break;
+        case 'c':
+            console.log(`\nC file ${fileName} created. Compiling...`);
+            res = shell.exec('gcc ' + fileName + ' && ./a.out'); // a.out is default file name and extension created after compiling.
+            // shell.rm('./a.out');
             break;
         case 'cpp':
-            console.log('C++ file created. Compiling...');
-            res = shell.exec('cpp '+ fileName);
+            console.log(`\nC++ file ${fileName} created. Compiling...`);
+            res = shell.exec('g++ ' + fileName + ' && ./a.out');
+            // shell.rm('./a.out');
             break;
         case 'py':
-            console.log('Python file created. Compiling...');
-            res = shell.exec('py '+ fileName);
+            console.log(`\nPython file ${fileName} created. Executing...`);
+            res = shell.exec('python ' + fileName);
             break;
         case 'php':
-            console.log('PHP file created. Compiling...');
-            res = shell.exec('php -f '+ fileName);
+            console.log(`\nPHP file ${fileName} created. Executing...`);
+            res = shell.exec('php -f ' + fileName);
             var a = php.cgi(fileName);
-            console.log(a);
+            // console.log(a);
             break;
     }
 
-    // shell.rm(fileName);
+    // console.log(res);
 
-    console.log(res);
+    // shell.rm(fileName);
+    // console.log(`\n ${fileName} removed`);
 
     return {
         result: res.stdout,
@@ -85,8 +94,10 @@ function interpretCode(ext, fileName){
 
 app.post('/interpret', function(request, response) {
     var ext = request.body.language;
-    
-    shell.cd('solutions');
+
+    const folderName = 'temp_' + uuidv4();
+    shell.mkdir(folderName);
+    shell.cd(folderName);
 
     var fileName = 'Solution.' + ext; // for Java it's important, because *.java file contains Class name, which is later used by java command.
 
@@ -97,6 +108,7 @@ app.post('/interpret', function(request, response) {
 
         response.send(interpretCode(ext, fileName))
         shell.cd('../');
+        shell.rm('-rf', folderName);
     });
 
     // request.on('data', function() {
