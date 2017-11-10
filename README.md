@@ -15,6 +15,13 @@ NodeJS, Java, PHP, Python, Ruby, Scala, Clojure, Go, MySQL, PostgresSQL, SQLite
 - https://www.hackerrank.com/
 - https://www.learnjavaonline.org/ - many tasks and languages
 - geeksforgeeks.org => http://ide.geeksforgeeks.org/index.php
+- https://coderbyte.com/
+- jsfiddle
+- codepen
+- jsbin
+- https://codeshare.io/
+- https://npm.runkit.com - playground to test code. It runs a full Node.js environment and already has all of npm’s 400,000 packages pre-installed.
+
 
 
 ## Maybe
