@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Remote Code Runner</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.js"></script>
+</head>
+
+<body>
+    <div class="ui two column centered grid">
+        <div class="column">
+            <h1>Remote Code Runner</h1>
+            <div>
+                <textarea class="codeField">console.log(2+2)</textarea>
+            </div>
+        </div>
+        <div class="column row messages">
+            <div class="ui"></div>
+        </div>
+        <div class="four column centered row">
+            <div class="column">
+                <select class="ui dropdown language">
+                    <option value="js">JavaScript</option>
+                    <option value="py">Python</option>
+                    <option value="java">Java</option>
+                    <option value="c">C</option>
+                    <option value="cpp">C++</option>
+                    <option value="php">PHP</option>
+                </select>
+            </div>
+            <div class="column">
+                <div>
+                    <button _type="submit" class="ui button right floated submitCode">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/test.js"></script>
+</body>
+
+</html>
