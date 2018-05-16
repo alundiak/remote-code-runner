@@ -1,7 +1,7 @@
 {
-  "name": "remote-code-interpreter",
+  "name": "remote-code-runner",
   "version": "1.0.0",
-  "description": "Remote Code Interpreter",
+  "description": "Remote Code Runner",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
