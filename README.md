@@ -3,11 +3,11 @@ Remote Code Runner
 
 Heroku supports:
 
-NodeJS, Java, PHP, Python, Ruby, Scala, Clojure, Go, MySQL, PostgresSQL, SQLite 
+NodeJS, Java, PHP, Python, Ruby, Scala, Clojure, Go, MySQL, PostgreSQL, SQLite
 
 ## Tech Stack
 - NodeJS, ExpressJS,
-- ShellJS, 
+- ShellJS,
 - Semantic UI
 
 ## Existed platforms
@@ -38,7 +38,7 @@ NodeJS, Java, PHP, Python, Ruby, Scala, Clojure, Go, MySQL, PostgresSQL, SQLite
 
 ## npm modules
 - [node-java](https://github.com/joeferner/node-java)
-- node-python, 
+- node-python,
 - [node-php](https://www.npmjs.com/package/node-php)
 - [shelljs](https://github.com/shelljs/shelljs)
 - [exec](https://www.npmjs.com/package/exec) deprecated in favor of NodeJS `child_process.execFile`
@@ -75,5 +75,11 @@ gcc # is the C compiler frontend to GCC.
 - https://github.com/isagalaev/highlight.js
 
 ## Codebase notes
-- `temp` folder is for temporary saving files *.java, *.class, *.out, *.js, *.py, *.php, etc.
+- `temp` folder is for temporary saving files `*.java, *.class, *.out, *.js, *.py, *.php`, etc.
 Files are deleted during running cycle. Yes, system `/tmp/` can be used, but for the educational and debug purpose, I would like to have folder, when needed, I can trace/look to generated file.
+
+## Alternatives Implementation
+
+- "Multiple Code Snippets Platform" or
+- "Code Snippets Monitor" or
+
